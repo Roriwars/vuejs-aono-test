@@ -12,6 +12,8 @@
                 v-for="equipe in equipes"
                 :key="equipe.id"
                 :equipe="equipe"
+                @onDeleteEquipe="onDeleteEquipe"
+                @onEditEquipe="onEditEquipe"
             />
         </tbody>
     </table>
@@ -29,6 +31,15 @@ export default {
       equipes: {
           type:Array
       }
+  },
+  methods: {
+    onDeleteEquipe(id) {
+        this.$emit("onDeleteEquipe", id);
+    },
+    onEditEquipe(data) {
+        window.console.log("equipe list edit " + data);
+        this.$emit("onEditEquipe", data);
+    }
   }
 };
 </script>

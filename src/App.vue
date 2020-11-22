@@ -10,8 +10,8 @@
     <div class="container">
       <div class="column">
         <div class="title has-text-centered">Les équipes</div>
-        <EquipeForm />
-        <EquipeList :equipes="equipes"/>
+        <EquipeForm :formEquipe="formEquipe" @onFormSubmitEquipe="onFormSubmitEquipe"/>
+        <EquipeList :equipes="equipes" @onDeleteEquipe="onDeleteEquipe" @onEditEquipe="onEditEquipe"/>
       </div>
       <div class="column">
         <div class="title has-text-centered">Les matchs</div>
@@ -43,6 +43,7 @@ export default {
       urlMatch: "http://api-aono-test.test/api/matchs",
       equipes: [],
       matchs:[],
+      formEquipe: {nom:"", isEdit:false}
     };
   },
   methods: {
@@ -59,6 +60,48 @@ export default {
         console.log(this.matchs);
         this.loader = false;
       });
+    },
+    onDeleteEquipe(id){
+      axios.delete(this.urlEquipe+"/"+id).then(() => {
+          this.getEquipes();
+        })
+        .catch(e => {
+          alert(e);
+        });
+    },
+    createEquipe(data) {
+      axios.post(this.urlEquipe, {
+          name: data.name
+        })
+        .then(() => {
+          this.getEquipes();
+        })
+        .catch(e => {
+          alert(e);
+        });
+    },
+    editEquipe(data) {
+      axios
+        .put(this.urlEquipe+"/"+data.id, {
+          name: data.name
+        })
+        .then(() => {
+          this.getEquipes();
+        })
+        .catch(e => {
+          alert(e);
+        });
+    },
+    onEditEquipe(data) {
+      this.formEquipe = data;
+      this.formEquipe.isEdit = true;
+    },
+    onFormSubmitEquipe(data) {
+      if (data.isEdit) {
+        this.editEquipe(data);
+      } else {
+        this.createEquipe(data);
+      }
     }
   },
   created() {
