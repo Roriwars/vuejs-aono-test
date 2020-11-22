@@ -129,19 +129,37 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: 'App',
-  components: {
-    
+  data() {
+    return {
+      urlEquipe: "http://api-aono-test.test/api/equipes",
+      urlMatch: "http://api-aono-test.test/api/matchs",
+      equipes: [],
+      matchs:[],
+    };
+  },
+  methods: {
+    getEquipes() {
+      axios.get(this.urlEquipe).then(data => {
+        this.equipes = data.data;
+        console.log(this.equipes);
+        this.loader = false;
+      });
+    },
+    getMatchs() {
+      axios.get(this.urlMatch).then(data => {
+        this.matchs = data.data;
+        console.log(this.matchs);
+        this.loader = false;
+      });
+    }
+  },
+  created() {
+    this.getEquipes();
+    this.getMatchs();
   }
 }
 </script>
-
-<style scoped>
-  .is-vcentered{
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-</style>
