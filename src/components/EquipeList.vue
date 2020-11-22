@@ -2,7 +2,7 @@
     <table class="table is-fullwidth is-striped has-text-centered">
         <thead>
             <tr>
-              <th>Id</th>
+              <th>#</th>
               <th>Nom</th>
               <th>Action</th>
             </tr>
