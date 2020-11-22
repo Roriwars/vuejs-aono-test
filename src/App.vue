@@ -10,47 +10,8 @@
     <div class="container">
       <div class="column">
         <div class="title has-text-centered">Les équipes</div>
-        <div class="field is-grouped">
-          <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Nom de l'équipe">
-          </p>
-          <p class="control">
-            <button class="button is-info">
-              Ajouter
-            </button>
-          </p>
-        </div>
-        <table class="table is-fullwidth is-striped has-text-centered">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nom</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>nomequipe</td>
-              <td>
-                <div class="buttons are-small is-centered">
-                  <button class="button is-success">Modifier</button>
-                  <button class="button is-danger">Supprimer</button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>nomequipe2</td>
-              <td>
-                <div class="buttons are-small is-centered">
-                  <button class="button is-success">Modifier</button>
-                  <button class="button is-danger">Supprimer</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <EquipeForm />
+        <EquipeList :equipes="equipes"/>
       </div>
       <div class="column">
         <div class="title has-text-centered">Les matchs</div>
@@ -130,9 +91,15 @@
 
 <script>
 import axios from "axios";
+import EquipeForm from "./components/EquipeForm"
+import EquipeList from "./components/EquipeList"
 
 export default {
   name: 'App',
+  components:{
+    EquipeForm,
+    EquipeList
+  },
   data() {
     return {
       urlEquipe: "http://api-aono-test.test/api/equipes",
