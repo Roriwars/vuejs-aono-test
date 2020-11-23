@@ -22,11 +22,11 @@ export default {
     },
     methods: {
         onDeleteEquipe() {
-            window.console.log("customer delete " + this.equipe.id);
+            console.log("equipe delete " + this.equipe.id);
             this.$emit("onDeleteEquipe", this.equipe.id);
         },
         onEditEquipe() {
-            window.console.log("equipe edit " + this.equipe.id);
+            console.log("equipe edit " + this.equipe.id);
             this.$emit("onEditEquipe", this.equipe);
         }
     }

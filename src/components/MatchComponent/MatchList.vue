@@ -13,6 +13,8 @@
                 v-for="match in matchs"
                 :key="match.id"
                 :match="match"
+                @onDeleteMatch="onDeleteMatch"
+                @onEditMatch="onEditMatch"
             />
         </tbody>
     </table>
@@ -30,6 +32,15 @@ export default {
       matchs: {
           type:Array
       }
+  },
+  methods: {
+    onDeleteMatch(id) {
+        this.$emit("onDeleteMatch", id);
+    },
+    onEditMatch(data) {
+        window.console.log(data);
+        this.$emit("onEditMatch", data);
+    }
   }
 };
 </script>

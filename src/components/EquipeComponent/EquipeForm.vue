@@ -1,7 +1,7 @@
 <template>
     <div class="field is-grouped">
         <p class="control is-expanded">
-            <input class="input" name="name" type="text" :value="formEquipe.name" @change="handleChange" placeholder="Nom de l'équipe">
+            <input class="input" name="nom" type="text" :value="formEquipe.nom" @change="handleChange" placeholder="Nom de l'équipe">
         </p>
         <p class="control">
             <button class="button is-info" @click="onFormSubmitEquipe">
@@ -41,19 +41,20 @@ export default {
             }
         },
         formValidation() {
-            if (document.getElementsByName("name")[0].value === "") {
+            if (document.getElementsByName("nom")[0].value === "") {
                 alert("Entrez un nom pour l'équipe");
                 return false;
             }
             return true;
         },
         clearFormFields() {
-            this.formEquipe.name = "";
+            this.formEquipe.nom = "";
             this.formEquipe.isEdit = false;
             document.querySelector(".input").value="";
         }
     },
     updated() {
+        console.log("DANS UPDATE EQUIPE");
         console.log(this.formEquipe)
         if (this.formEquipe.isEdit) {
             this.btn = "Modifier";
