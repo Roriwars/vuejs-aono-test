@@ -14,12 +14,8 @@
       </div>
       <div id="navbar" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">
-            <router-link to="/" class="nav-link">Equipes</router-link>
-          </a>
-          <a class="navbar-item">
-            <router-link to="/matchs" class="nav-link">Matchs</router-link>
-          </a>
+          <router-link to="/" class="navbar-item">Equipes</router-link>
+          <router-link to="/matchs" class="navbar-item">Matchs</router-link>
         </div>
       </div>  
     </nav>
