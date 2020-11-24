@@ -19,8 +19,7 @@ export default {
   },
   data() {
     return {
-      urlEquipe: "http://api-aono-test.test/api/equipes",
-      urlMatch: "http://api-aono-test.test/api/matchs",
+      urlEquipe: "http://api-laravel-aono.test/api/equipes",
       equipes: [],
       formEquipe: {nom:"", isEdit:false},
     };
