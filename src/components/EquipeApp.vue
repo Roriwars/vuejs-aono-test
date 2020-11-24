@@ -28,7 +28,6 @@ export default {
     getEquipes() {
       axios.get(this.urlEquipe).then(data => {
         this.equipes = data.data;
-        console.log(this.equipes);
       });
     },
     onDeleteEquipe(id){
@@ -63,7 +62,6 @@ export default {
         });
     },
     onEditEquipe(data) {
-        console.log("onEditEquipe");
       this.formEquipe = data;
       this.formEquipe.isEdit = true;
     },

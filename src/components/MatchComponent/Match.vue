@@ -16,11 +16,6 @@
 
 export default {
   name: 'Match',
-  data(){
-        return{
-            modified:false
-        }
-  },
   props:{
         match: {
             type:Object
@@ -32,8 +27,6 @@ export default {
             this.$emit("onDeleteMatch", this.match.id);
         },
         onEditMatch() {
-            this.modified=!this.modified;
-            console.log(this.modified);
             console.log("match edit " + this.match.id);
             this.$emit("onEditMatch", this.match);
         }

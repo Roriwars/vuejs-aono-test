@@ -54,8 +54,6 @@ export default {
         }
     },
     updated() {
-        console.log("DANS UPDATE EQUIPE");
-        console.log(this.formEquipe)
         if (this.formEquipe.isEdit) {
             this.btn = "Modifier";
             document.querySelector(".input").value=this.formEquipe.nom;

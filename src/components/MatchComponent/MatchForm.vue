@@ -6,7 +6,7 @@
                     <label class="label">Equipe Locale</label>
                     <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                            <select id="selectLocale" name="idEquipeLocale" @change="handleChangeSelect1">
+                            <select id="selectLocale" v-model="formMatch.idEquipeLocale">
                                 <option disabled value="" selected>Choisissez une équipe</option>
                                 <option v-for="equipe in equipes" v-bind:key="equipe.id" v-bind:value="equipe.id">{{equipe.nom}}</option>
                             </select>
@@ -17,9 +17,9 @@
                     <label class="label">Equipe Visiteuse</label>
                     <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                            <select id="selectVisiteuse" name="idEquipeVisiteuse" @change="handleChangeSelect2">
+                            <select id="selectVisiteuse" v-model="formMatch.idEquipeVisiteuse">
                                 <option disabled value="" selected>Choisissez une équipe</option>
-                                <option v-for="equipe in equipes" v-bind:key="equipe.id" v-bind:selected="null" v-bind:value="equipe.id">{{equipe.nom}}</option>
+                                <option v-for="equipe in equipes" v-bind:key="equipe.id" v-bind:value="equipe.id">{{equipe.nom}}</option>
                             </select>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ export default {
     name: 'MatchForm',
     data(){
         return{
-            btn:"Ajouter"
+            btn:"Ajouter",
         }
     },
     props:{
@@ -56,18 +56,6 @@ export default {
         }
     },
     methods: {
-        handleChangeSelect1(event) {
-            const { name, value } = event.target;
-            let formMatch = this.formMatch;
-            formMatch[name] = value;
-            this.formMatch = formMatch;
-        },
-        handleChangeSelect2(event) {
-            const { name, value } = event.target;
-            let formMatch = this.formMatch;
-            formMatch[name] = value;
-            this.formMatch = formMatch;
-        },
         onFormSubmitMatch(event) {
             event.preventDefault();
             if (this.formValidation()) {
@@ -88,8 +76,8 @@ export default {
             return true;
         },
         clearFormFields() {
-            this.formMatch.idEquipeLocale = null;
-            this.formMatch.idEquipeVisiteuse = null;
+            this.formMatch.idEquipeLocale = '';
+            this.formMatch.idEquipeVisiteuse = '';
             this.formMatch.nomEquipeLocale = "";
             this.formMatch.nomEquipeVisiteuse = "";
             this.formMatch.isEdit = false;
@@ -98,8 +86,6 @@ export default {
         }
     },
     updated() {
-        console.log("DANS UPDATE MATCH");
-        console.log(this.formMatch);
         if (this.formMatch.isEdit) {
             this.btn = "Modifier";
         }

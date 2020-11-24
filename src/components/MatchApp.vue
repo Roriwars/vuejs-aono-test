@@ -23,20 +23,18 @@ export default {
       urlMatch: "http://api-laravel-aono.test/api/matchs",
       equipes: [],
       matchs:[],
-      formMatch: {idEquipeLocale:null, idEquipeVisiteuse:null, nomEquipeLocale:"", nomEquipeVisiteuse:"", isEdit:false}
+      formMatch: {idEquipeLocale:'', idEquipeVisiteuse:'', nomEquipeLocale:"", nomEquipeVisiteuse:"", isEdit:false}
     };
   },
   methods: {
     getEquipes() {
       axios.get(this.urlEquipe).then(data => {
         this.equipes = data.data;
-        console.log(this.equipes);
       });
     },
     getMatchs() {
       axios.get(this.urlMatch).then(data => {
         this.matchs = data.data;
-        console.log(this.matchs);
       });
     },
     onDeleteMatch(id){
@@ -73,11 +71,7 @@ export default {
         });
     },
     onEditMatch(data) {
-        console.log("onEditMatch");
-        console.log(this.formMatch);
-        console.log(data);
         this.formMatch = data;
-        console.log(this.formMatch);
         this.formMatch.isEdit = true;
     },
     onFormSubmitMatch(data) {

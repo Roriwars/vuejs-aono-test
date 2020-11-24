@@ -38,7 +38,6 @@ export default {
         this.$emit("onDeleteMatch", id);
     },
     onEditMatch(data) {
-        window.console.log(data);
         this.$emit("onEditMatch", data);
     }
   }

@@ -37,7 +37,6 @@ export default {
         this.$emit("onDeleteEquipe", id);
     },
     onEditEquipe(data) {
-        window.console.log("equipe list edit " + data);
         this.$emit("onEditEquipe", data);
     }
   }
