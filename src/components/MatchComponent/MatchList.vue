@@ -1,4 +1,5 @@
 <template>
+    <div class="column">
     <table class="table is-fullwidth is-striped has-text-centered">
         <thead>
             <tr>
@@ -18,6 +19,7 @@
             />
         </tbody>
     </table>
+    </div>
 </template>
 
 <script>

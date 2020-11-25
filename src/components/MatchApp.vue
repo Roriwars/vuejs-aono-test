@@ -1,8 +1,9 @@
 <template>
     <div class="column">
         <div class="title has-text-centered">Les matchs</div>
-        <MatchForm :formMatch="formMatch" :equipes="equipes" @onFormSubmitMatch="onFormSubmitMatch"/>        
-        <MatchList :matchs="matchs" @onDeleteMatch="onDeleteMatch" @onEditMatch="onEditMatch"/>
+        <MatchForm :formMatch="formMatch" :equipes="equipes" @onFormSubmitMatch="onFormSubmitMatch"/> 
+        <Loader v-if="loader"/>       
+        <MatchList v-if="!loader" :matchs="matchs" @onDeleteMatch="onDeleteMatch" @onEditMatch="onEditMatch"/>
     </div>
 </template>
 
@@ -10,12 +11,14 @@
 import axios from "axios";
 import MatchForm from "./MatchComponent/MatchForm"
 import MatchList from "./MatchComponent/MatchList"
+import Loader from "./Loader"
 
 export default {
   name: 'MatchApp',
   components:{
     MatchForm,
-    MatchList
+    MatchList,
+    Loader
   },
   data() {
     return {
@@ -23,21 +26,27 @@ export default {
       urlMatch: "http://api-laravel-aono.test/api/matchs",
       equipes: [],
       matchs:[],
+      loader:false,
       formMatch: {idEquipeLocale:'', idEquipeVisiteuse:'', nomEquipeLocale:"", nomEquipeVisiteuse:"", isEdit:false}
     };
   },
   methods: {
     getEquipes() {
+      this.loader=true;
       axios.get(this.urlEquipe).then(data => {
         this.equipes = data.data;
+        this.loader=false;
       });
     },
     getMatchs() {
+      this.loader=true;
       axios.get(this.urlMatch).then(data => {
         this.matchs = data.data;
+        this.loader=false;
       });
     },
     onDeleteMatch(id){
+      this.loader=true;
       axios.delete(this.urlMatch+"/"+id).then(() => {
           this.getMatchs();
         })
@@ -75,6 +84,7 @@ export default {
         this.formMatch.isEdit = true;
     },
     onFormSubmitMatch(data) {
+      this.loader=true;
         if (data.isEdit) {
             this.editMatch(data);
         } else {

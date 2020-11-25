@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="column">
         <div class="columns is-desktop is-centered">
             <div class="column">
                 <div class="field">

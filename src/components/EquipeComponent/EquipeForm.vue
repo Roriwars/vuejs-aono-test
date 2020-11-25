@@ -1,13 +1,15 @@
 <template>
-    <div class="field is-grouped">
-        <p class="control is-expanded">
-            <input class="input" name="nom" type="text" :value="formEquipe.nom" @change="handleChange" placeholder="Nom de l'équipe">
-        </p>
-        <p class="control">
-            <button class="button is-info" @click="onFormSubmitEquipe">
-              {{btn}}
-            </button>
-        </p>
+    <div class="column">
+        <div class="field is-grouped">
+            <p class="control is-expanded">
+                <input class="input" name="nom" type="text" :value="formEquipe.nom" @change="handleChange" placeholder="Nom de l'équipe">
+            </p>
+            <p class="control">
+                <button class="button is-info" @click="onFormSubmitEquipe">
+                {{btn}}
+                </button>
+            </p>
+        </div>
     </div>
 </template>
 
